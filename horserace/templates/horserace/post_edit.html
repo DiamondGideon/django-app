@@ -5,7 +5,9 @@
         <h1><a>New post</a></h1></div>
         <form method="POST" class="post-form">{% csrf_token %}
             <div class="handle_site"> {{ form.as_p }}</div>
+            {% if user.is_authenticated %}
             <button type="submit" class="save btn btn-default">Save</button>
+            {% endif%}
         </form>
 
 {% endblock %}
