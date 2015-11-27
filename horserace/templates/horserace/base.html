@@ -1,0 +1,55 @@
+    {% load staticfiles %}
+    <html>
+        <head>
+            <title>Gideon</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="{% static 'css/horserace.css' %}">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+              <style>
+                .carousel-inner > .item > img,
+                .carousel-inner > .item > a > img {
+                width: 70%;
+                margin: auto;
+                }
+                </style>
+        </head>
+
+            <body>
+
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="handle_site">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="/">Gideon</a>
+                </div>
+                <div>
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="/posts">Posts</a></li>
+                      {% if user.is_authenticated %}
+                    <li><a href="{% url 'horserace.views.post_new' %}">New</a></li>
+                    {% endif %}
+                  </ul>
+                </div>
+                    </div>
+              </div>
+            </nav>
+
+
+
+            <div class="content container">
+                <div class="row">
+                    <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+    </body>
+
+    </html>

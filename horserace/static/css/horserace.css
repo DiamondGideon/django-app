@@ -1,0 +1,72 @@
+    .page-header {
+        background-color: #C9DBED;
+        margin-top: 0;
+        padding: 20px 20px 20px 40px;
+    }
+
+    body {
+    background-image: url("http://www.wallpaperup.com/uploads/wallpapers/2012/07/28/7493/d53ee454712cfcc88dbc5a217fc2722c.jpg");
+}
+
+    .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+        color: #C9DBED;
+        font-size: 36pt;
+        text-decoration: none;
+    }
+
+    .list_form {
+        border: 1px solid #333333;
+    }
+
+
+    .corousel_posivion{
+          position: fixed;
+          top: 20%;
+          left: 20%;
+          /* bring your own prefixes */
+          transform: translate(-10%, -10%);
+
+
+    }
+
+    .content {
+        margin-left: 40px;
+    }
+
+    h1, h2, h3, h4 {
+        font-family: 'Lobster', cursive;
+    }
+
+    .date {
+        float: right;
+        color: #C9DBED;
+    }
+
+    .handle_site{
+
+    }
+
+    .save {
+        float: right;
+    }
+
+    .post-form textarea, .post-form input {
+        width: 100%;
+    }
+
+    .top-menu, .top-menu:hover, .top-menu:visited {
+        color: #ffffff;
+        float: right;
+        margin-top: -50px;
+        font-size: 50pt;
+        margin-right: 0px;
+    }
+
+    .post {
+        margin-bottom: 70px;
+        color: #C9DBED;
+    }
+
+    .post h1 a, .post h1 a:visited {
+        color: #ffffcc;
+    }
