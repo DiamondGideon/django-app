@@ -1,13 +1,14 @@
 {% extends 'horserace/base.html' %}
-
+{%load i18n%}
 {% block content %}
-    <div class="post">
-        <h1><a>New post</a></h1></div>
+<div class="post_container">
+        <h1><a>{%trans "Новый забег"%}</a></h1>
         <form method="POST" class="post-form">{% csrf_token %}
             <div class="handle_site"> {{ form.as_p }}</div>
             {% if user.is_authenticated %}
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">{%trans "Сохранить"%}</button>
             {% endif%}
         </form>
+    </div>
 
 {% endblock %}

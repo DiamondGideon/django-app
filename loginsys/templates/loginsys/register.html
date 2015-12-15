@@ -1,0 +1,16 @@
+{% extends 'horserace/base.html' %}
+
+{% block login %}
+
+<div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Register</h1><br>
+        <form action="auth/register/" method="POST">
+            {% csrf_token %}
+            {{ uform.as_p }}
+            {{ pform.as_p }}
+            <input class = "button" type="submit" value="Enter">
+        </form>
+</div>
+</div>
+{% endblock %}

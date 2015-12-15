@@ -1,0 +1,15 @@
+{% extends 'horserace/base.html' %}
+{%load i18n%}
+    {% block content %}
+                    <div class="post"><h1>{%trans "Победители"%}</h1></div>
+                    {% for bet in bets %}
+                        <div class="winner">
+                            <div class="list_form">
+                            <div class="winner_username">
+                                {{ bet.result }}
+                            </div>
+                                <h1><a>{{ bets.user.username }}</a></h1>
+                                </div>
+                        </div>
+                    {% endfor %}
+    {% endblock %}

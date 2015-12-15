@@ -1,4 +1,5 @@
     {% load staticfiles %}
+    {% load i18n %}
     <html>
         <head>
             <title>Gideon</title>
@@ -30,10 +31,37 @@
                 </div>
                 <div>
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="/posts">Posts</a></li>
-                      {% if user.is_authenticated %}
-                    <li><a href="{% url 'horserace.views.post_new' %}">New</a></li>
-                    {% endif %}
+                    <li class="active"><a href="/posts">{%trans "Забеги"%}</a></li>
+                      {% if user.is_staff %}
+                    <li><a href="{% url 'horserace.views.post_new' %}">{%trans "Новый Забег"%}</a></li>
+                      {% endif %}
+
+                  </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                              <a class="btn navbar-btn pull-right" style="margin-right: 5px;" href="#" data-toggle="dropdown">EN<b class="caret"></b></a>
+                            <!--<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Language<b class = "caret"></b>-->
+                              </a>
+                                <ul class="dropdown-menu realing">
+                                    <li>
+                                   {% for lang in LANGUAGES %}
+                                          <form name="setLang{{ lang.1}}" action="/i18n/setlang/" method="POST">
+                                            {% csrf_token %}
+                                            <input name="next" type="hidden" value="/">
+                                            <input type="hidden" name="language" value="{{ lang.0 }}">
+                                            <li><a href="#" onclick="document.setLang{{ lang.1 }}.submit();
+                                                return false;">{{ lang.1 }}</a></li>
+                                          </form>
+                                      {% endfor %}
+                                    </li>
+                                </ul>
+                          {% if user.username %}
+                              <li><a href = "/auth/logout/" class="right">{%trans "Выйти"%} ({{ user.username }}): {{ profile.balance }}USD </a></li>
+                          {% else %}
+                              <li><a href = "/auth/login/" class="right" > {%trans "Войти"%}</a></li>
+
+                          {% endif %}
+
                   </ul>
                 </div>
                     </div>
@@ -45,11 +73,38 @@
             <div class="content container">
                 <div class="row">
                     <div class="col-md-8">
-                    {% block content %}
-                    {% endblock %}
+                    {% block content %}{% endblock %}
+                    {% block login %}{% endblock %}
                     </div>
                 </div>
             </div>
+
+            <!---->
+                                    <!--<li>-->
+                          <!--<form action="/i18n/setlang/" method="POST">-->
+                            <!--{% csrf_token %}-->
+                            <!--<input name="next" type="hidden" value="/">-->
+                              <!--<select name = "language">-->
+                                  <!--{% for lang in LANGUAGES %}-->
+                                    <!--<option value = "{{lang.0}}" onclick="submit">{{lang.1}}</option>-->
+                                  <!--{% endfor%}-->
+                                  <!--</select><br/>-->
+                                  <!--<button type="submit"  value="{% trans 'change' %}" />-->
+                          <!--</form>-->
+                        <!--</li>-->
+
+            <!--{% for lang in LANGUAGES %}-->
+                        <!--<li>-->
+                          <!--<form name="setLang{{ lang.1}}" action="/i18n/setlang/" method="POST">-->
+                            <!--{% csrf_token %}-->
+                            <!--<input name="next" type="hidden" value="/">-->
+                            <!--<input type="hidden" name="language" value="{{ lang.0 }}">-->
+                            <!--<a href="#" onclick="document.setLang{{ lang.1 }}.submit();-->
+                                <!--return false;">{{ lang.1 }}</a>-->
+                          <!--</form>-->
+                        <!--</li>-->
+                      <!--{% endfor %}-->
+
     </body>
 
     </html>

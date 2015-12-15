@@ -1,5 +1,5 @@
     {% extends 'horserace/base.html' %}
-
+    {% load i18n %}
     {% block content %}
         <div class="post">
             {% if post.published_date %}
@@ -10,5 +10,22 @@
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             <h1>{{ post.title }}</h1>
             <p>{{ post.text|linebreaks }}</p>
+        </div>
+        <div class = "bets_list">
+            {% if profile.user.is_staff %}
+                <a class="btn btn-default" href="{% url 'post_result_and_delete' pk=post.pk%}">{%trans "Результаты"%}</a>
+                {% for bet in bets %}
+                        <div class="bets">
+                                <h1><a>{{ bet.user.username }}</a></h1>
+                                <div class="date">
+                                    {{ bet.result }}
+                                </div>
+                                <p>Made bet: {{ bet.bet }}</p>
+                                </div>
+                        </div>
+                {% endfor %}
+            {% elif not profile.user.is_staff %}
+                <a class="btn btn-default" href="{% url 'post_make_bet' pk=post.pk %}">{%trans "Сделать ставку"%}</a>
+            {% endif %}
         </div>
     {% endblock %}

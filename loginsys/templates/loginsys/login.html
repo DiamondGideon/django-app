@@ -1,0 +1,26 @@
+{% extends 'horserace/base.html' %}
+
+{% block login %}
+
+<div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+        <form action="/auth/login/" method="POST">
+            {% csrf_token %}
+            <label for = "username"> Username</label>
+            <input type = "text" name="username" id = "username">
+            <label for = "password"> Password</label>
+            <input type="password" name="password" id="password">
+            {% if login_error %}
+                <label class = "error">{{ login_error }}</label>
+            {% endif %}
+            <input class = "button" type="submit" value="Enter">
+        </form>
+				  <div class="login-help">
+					<a href="/auth/register/">Register</a> - <a href="#">Forgot Password</a>
+				  </div>
+				</div>
+</div>
+
+{% endblock %}
+
